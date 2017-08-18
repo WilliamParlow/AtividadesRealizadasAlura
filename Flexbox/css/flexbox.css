@@ -1,14 +1,181 @@
+/* 
+        O display flex deve ser colocado no pai dos elementos que queremos alinhar 
+
+        FLEX-CONTAINER -> Elemento pai que recebe o display flex para alinhar os itens que desejamos
+        FLEX-ITEM -> Elementos que desejamos alinhar. Estes são filhos do FLEX-CONTAINER.
+
+    display: flex -> Habilita o flex-box
+    align-items: center -> Centraliza os itens
+    justify-content: space-between -> justifica os itens, distribuindo espaço entre os elementos
+    justify-content: space-around -> justifica os itens, distribuindo espaço ao redor dos elementos
+    item A: flex-direction: column -> Distribui os itens em colunas (default: row)
+    item B: flex-wrap: wrap -> Quebra os elementos quando estes passam do tamanho do seu pai
+    flex-flow: column wrap -> resume os itens A e B.
+    flex-grow: 1 -> Define que um flex-item cresça, ou seja, o espaço sobrando dentro do FLEX-CONTAINER
+                    será utilizado para aumentar o seu tamanho.
+    flex-shrink: 2 -> Deminui os elementos mais do que outro quando diminuimos a tela. O valor que passamos é um multiplicador
+    flex-basis: <valor em width> -> define o tamanho dos elementos em width.
+    flex: <flex-grow> <flex-shrink> <flex-basis> -> define flex-grow, flex-shrink e flex-basis em um mesma propriedade.
+
+    flex-grow aumenta os elementos, e flex-shrink diminui os elementos. Ambos calculam quantos elementos possuem o atributo. Cada
+    elemento possui um valor de flex-grow/shrink. A cada elemento, ele soma o valor definido, chegando em um total da soma dos valores
+    definidos no flex-grow/shrink. A diferença entre os dois é que a partir de agora: 
+    
+    - flex-grow pega o valor do espaço sobrando, divide pela soma do total de flex-grow de todos os elementos, divide pelo total do espaço 
+    em branco e, para cada elemento, ele pega uma parte desse espaço e coloca no elemento. A quantidade de partes é baseada pelo valor do 
+    flex-grow. Se entre 2 elementos, um tem flex-grow: 2 e outro tem flex-grow: 1, o total é 3. O espaço em branco é dividido por 3, e o 
+    elemento 1 pega 2 partes do resultado da divisao e o 2 pega 1 parte. Supondo que o espaço em branco seja 200px, esse valor é dividido
+    por 3, resultando 66.6 px. O tamanho que o elemento ocupar é definido pelo valor da divisão multiplicado pela quantidade de flex-grow do
+    elemento, somado com o width atual do elemento.
+    - flex-shrink pega o valor do de pixels diminuídos, ou seja, se 2 elementos com 100px de width, totalizando 200px de width, estiverem em
+    uma tela com 100px, ele pega o espaço deminuído (100px), divide pelo total de flex-shrink dos elementos, supondo que o elemento 1 tem 2
+    de flex-shrink e o elemento 2 tem 1, totalizando 3, dividirá o valor do espaço diminuido e diminuira o width dos elementos por esse valor
+    multiplicado pela quantidade de flex-shrink definido pelo elemento. Nesse caso, para o elemento 2, o resultado é (100 - (33.3 * 1)) = 66.6,
+    e para o elemento 1 é (100 - (33.3 * 2)) = 33.3. Portanto, o width do elemento 2 ficará com 66.6px e o elemento 1 ficará com 33.3px
+
+*/
+
+/* 
+
+    DISPLAY DESKTOP
+
+*/
+
+/* Cabeçalho */
 .cabecalhoPrincipal > div.container {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.cabecalhoPrincipal-nav{
+.cabecalhoPrincipal-nav {
     display: flex;
 }
 
-.cabecalhoPrincipal-nav,
-.cabecalhoPrincipal-titulo {
-    
+/* Footer */
+.rodapePrincipal-patrocinadores > .container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.rodapePrincipal-patrocinadores-list {
+    display: flex;
+    width: 70%;
+    margin-right: 5%;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.rodapePrincipal-contatoForm {
+    width: 25%;
+}
+
+.rodapePrincipal-contatoForm-fieldset {
+    display: flex;
+}
+
+/* Footer - Mapa de cursos */
+.rodapePrincipal-navMap-list {
+    display: flex;
+    /* flex-direction: column;
+    flex-wrap: wrap; */
+    flex-flow: column wrap;
+    height: 260px;
+}
+
+/* Conteudo principal */
+.conteudoPrincipal-cursos {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.conteudoPrincipal-cursos-link {
+    width: 23%;
+}
+
+/* Video sobre */
+.videoSobre .container {
+    display: flex;
+}
+
+.videoSobre-sobre {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 2;
+}
+
+.videoSobre-sobre-list {
+    flex-grow: 1;
+}
+
+.videoSobre-video {
+    flex-grow: 1;
+    flex-shrink: 2;
+}
+
+/* 
+
+    DISPLAY MOBILE
+
+*/
+
+@media screen and (max-width: 768px) {
+
+    .cabecalhoPrincipal-nav {
+        flex-direction: column;
+    }
+
+    .cabecalhoPrincipal > .container {
+        flex-direction: column;
+        align-items: initial !important;
+        text-align: center;
+    }
+
+    .conteudoPrincipal-cursos {
+        flex-direction: column;
+    }
+
+    .conteudoPrincipal-cursos-link {
+        width: 100%;
+    }
+
+    .rodapePrincipal-navMap-list {
+        display: flex;
+        /* flex-direction: column;
+        flex-wrap: wrap; */
+        flex-flow: column nowrap;
+        height: auto;
+    }
+
+    .rodapePrincipal-patrocinadores > .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .rodapePrincipal-contatoForm {
+        width: 100%;
+    }
+
+    .rodapePrincipal-patrocinadores-list {
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .rodapePrincipal-contatoForm-fieldset {
+        justify-content: center;
+    }
+
+    .cabecalhoPrincipal-nav-link-app {
+        order: -1;
+    }
+
+    .videoSobre .container {
+        flex-direction: column;
+    }
+
+    .videoSobre-video {
+        margin: 0 auto;
+    }
+
 }
