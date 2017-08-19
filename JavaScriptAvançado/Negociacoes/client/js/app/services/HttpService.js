@@ -15,7 +15,7 @@ class HttpService {
         if (xhr.readyState == 4) {
 
           if (xhr.status == 200) {
-
+            console.log(xhr)
             resolve(JSON.parse(xhr.responseText));
           } else {
             reject('Não foi possível obter dados da semana anterior');
