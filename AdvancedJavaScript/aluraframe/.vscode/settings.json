@@ -1,0 +1,18 @@
+{
+  "editor.tabSize": 2,
+  "editor.fontWeight": "bold",
+  "editor.fontSize": 15,
+  "editor.roundedSelection": true,
+  "editor.mouseWheelZoom": false,
+  "editor.matchBrackets": true,
+  "workbench.editor.showTabs": true,
+  "workbench.editor.tabCloseButton": "right",
+  "workbench.editor.showIcons": true,
+  "workbench.editor.enablePreview": true,
+  "workbench.commandPalette.preserveInput": true,
+  "window.openFilesInNewWindow": "on",
+  "css.lint.duplicateProperties": "warning",
+  "css.lint.compatibleVendorPrefixes": "warning",
+  "html.format.indentInnerHtml": true,
+  "autoimport.spaceBetweenBraces": true
+}
