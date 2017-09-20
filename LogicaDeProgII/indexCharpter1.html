@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Programming Logic II - Create Graphics With Canvas and a Game!</title>
+
+   <style>
+      canvas {
+         margin-bottom: 20px;
+         float: left;
+         clear: left;
+      }
+   </style>
+
+</head>
+
+<body>
+
+   <canvas id="myBrasil" width="600px" height="400px"></canvas>
+   <canvas id="mySquare" width="600px" height="400px"></canvas>
+   <canvas id="myCreeper" width="600px" height="400px"></canvas>
+   <canvas id="myCanvas" width="600px" height="400px"></canvas>
+
+   <script>
+      // CREATE A FLAG
+
+      let canvas = document.querySelector('#myCanvas');
+      let brush = canvas.getContext('2d');
+
+      // Fill a green rect
+      // fillRect(Start X, Start Y, Final X, Final Y)
+      brush.fillStyle = 'green';
+      brush.fillRect(0, 0, 200, 400);
+
+      brush.fillStyle = 'red';
+      brush.fillRect(400, 0, 200, 400);
+
+      // Make a path to draw on canvas
+      // beginPath() -> Start a draw path. Need to use again when you draw a different path
+      // moveTo(Start X, Start Y) -> Move brush to a draw point. This not draw at canvas
+      // lineTo(Final X, Final Y) -> Draw a line to designated point
+      // fill() -> Fill all inside color path of line drawed
+      brush.fillStyle = 'yellow';
+      brush.beginPath();
+      brush.moveTo(300, 200);
+      brush.lineTo(200, 400);
+      brush.lineTo(400, 400);
+      brush.lineTo(300, 200);
+      brush.fill();
+
+      // arc(Start X, Start Y, circleSize, startAngle, finalAngle) -> Draw a circle
+      // fill() -> Fill arc color
+      brush.fillStyle = 'blue';
+      brush.beginPath();
+      brush.arc(300, 200, 50, 0, 2 * Math.PI);
+      brush.fill();
+   </script>
+
+   <script>
+      // Create a CREEPER
+
+      let canvasCreeper = document.querySelector('#myCreeper');
+      let creeperBrush = canvasCreeper.getContext('2d');
+
+      creeperBrush.fillStyle = 'darkgreen';
+      creeperBrush.fillRect(0, 0, 350, 300);
+
+      creeperBrush.fillStyle = 'black';
+      creeperBrush.fillRect(50, 60, 90, 90);
+      creeperBrush.fillRect(210, 60, 90, 90);
+      creeperBrush.fillRect(100, 190, 45, 110);
+      creeperBrush.fillRect(210, 190, 45, 110);
+      creeperBrush.fillRect(140, 150, 70, 100);
+   </script>
+
+   <script>
+      // Create a SQUARE
+
+      let canvasSquare = document.querySelector('#mySquare');
+      let brushSquare = canvasSquare.getContext('2d');
+
+      brushSquare.fillStyle = 'black';
+      brushSquare.beginPath();
+      brushSquare.moveTo(0, 50);
+      brushSquare.lineTo(0, 400);
+      brushSquare.lineTo(350, 400);
+      brushSquare.lineTo(0, 50);
+      brushSquare.fill();
+      brushSquare.beginPath();
+      brushSquare.fillStyle = 'white';
+      brushSquare.moveTo(50, 175);
+      brushSquare.lineTo(50, 350);
+      brushSquare.lineTo(225, 350);
+      brushSquare.lineTo(50, 175);
+      brushSquare.fill();
+   </script>
+
+   <script>
+      // Brasil FLAG
+
+      var canvasBrasil = document.querySelector('#myBrasil');
+      var brushBrasil = canvasBrasil.getContext('2d');
+
+      brushBrasil.fillStyle = 'green';
+      brushBrasil.fillRect(0, 0, 600, 400);
+
+      brushBrasil.fillStyle = 'yellow';
+      brushBrasil.beginPath();
+      brushBrasil.moveTo(300, 50);
+      brushBrasil.lineTo(50, 200);
+      brushBrasil.lineTo(550, 200);
+      brushBrasil.fill();
+
+      brushBrasil.beginPath();
+      brushBrasil.moveTo(300, 350);
+      brushBrasil.lineTo(50, 200);
+      brushBrasil.lineTo(550, 200);
+      brushBrasil.fill();
+
+      brushBrasil.fillStyle = 'darkblue';
+      brushBrasil.beginPath();
+
+      brushBrasil.arc(300, 200, 100, 0, 2 * 3.14);
+      brushBrasil.fill();
+   </script>
+
+</body>
+
+</html>

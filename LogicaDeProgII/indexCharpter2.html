@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Programming Logic II - Create Graphics With Canvas and a Game!</title>
+
+   <style>
+      canvas {
+         float: left;
+         clear: left;
+      }
+   </style>
+
+</head>
+
+<body>
+
+   <canvas id="myCanvas" width="600px" height="400px"></canvas>
+   <canvas id="myFlower" width="600px" height="400px"></canvas>
+   <canvas id="myGraph" width="600px" height="400px"></canvas>
+
+   <script>
+      // FUNCTIONS
+
+      function drawRect(x, y, sizeX, sizeY, context, rectFillColor, strokeFillColor) {
+
+         // fillStroke -> Define like a border color
+         // strokeRect -> Draw like a rect border, and don't fill inside
+
+         rectFillColor = rectFillColor || 'green';
+         strokeFillColor = strokeFillColor || 'black';
+
+         context.fillStyle = rectFillColor;
+         context.fillStroke = strokeFillColor;
+
+         context.fillRect(x, y, sizeX, sizeY);
+         context.strokeRect(x, y, sizeX, sizeY);
+
+      }
+
+      function drawArc(x, y, radius, color, context) {
+
+         context.fillStyle = color;
+
+         context.beginPath();
+         context.arc(x, y, radius, 0, 2 * 3.14);
+         context.fill();
+
+      }
+
+      function drawText(text, x, y, context, color, fontConfig) {
+
+         context.font = fontConfig || '20px Arial';
+         context.fillStyle = color || 'black';
+
+         context.fillText(text, x, y);
+
+      }
+   </script>
+
+   <script>
+      // CREATE A RECT
+
+      let canvas = document.querySelector('#myCanvas');
+      let brush = canvas.getContext('2d');
+
+      drawRect(0, 0, 50, 50, brush);
+   </script>
+
+   <script>
+      // CREATE A FLOWER
+
+      let canvasFlower = document.querySelector('#myFlower');
+      let brushFlower = canvasFlower.getContext('2d');
+
+      for (let i = 100; i < 600; i += 100) {
+
+         for (let j = 100; j < 400; j += 100) {
+
+            drawArc(i, j, 20, 'red', brushFlower);
+            drawArc(i + 50, j, 20, 'green', brushFlower);
+            drawArc(i - 50, j, 20, 'blue', brushFlower);
+            drawArc(i, j + 50, 20, 'yellow', brushFlower);
+            drawArc(i, j - 50, 20, 'black', brushFlower);
+
+         }
+
+      }
+
+      drawText("Flowers and Flowers", 0, 400, brushFlower, "red", "64px Arial");
+   </script>
+
+   <script>
+      // CREATE BAR GRAPH
+
+      function desenhaRetangulo(x, y, largura, altura, cor) {
+         var tela = document.querySelector('#myGraph');
+         var pincel = tela.getContext('2d');
+
+         pincel.fillStyle = cor;
+         pincel.fillRect(x, y, largura, altura);
+         pincel.strokeStyle = 'black';
+         pincel.strokeRect(x, y, largura, altura);
+      }
+
+      function desenhaTexto(x, y, texto) {
+         var tela = document.querySelector('#myGraph');
+         var pincel = tela.getContext('2d');
+
+         pincel.font = '15px Georgia';
+         pincel.fillStyle = 'black';
+         pincel.fillText(texto, x, y);
+      }
+
+      function desenhaBarra(x, y, serie, cores, texto) {
+
+         desenhaTexto(x, y - 10, texto);
+
+         var somaAltura = 0;
+         for (var i = 0; i < serie.length; i++) {
+            var altura = serie[i];
+            desenhaRetangulo(x, y + somaAltura, 50, altura, cores[i]);
+            somaAltura = somaAltura + altura;
+         }
+      }
+
+      var cores = ['blue', 'green', 'yellow', 'red'];
+      var serie2015 = [50, 25, 20, 5];
+      var serie2016 = [65, 20, 13, 2];
+
+      desenhaBarra(50, 50, serie2015, cores, '2015');
+      desenhaBarra(150, 50, serie2016, cores, '2016');
+   </script>
+
+</body>
+
+</html>
