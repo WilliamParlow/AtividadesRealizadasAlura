@@ -2,46 +2,51 @@
 <html lang="en">
 
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-   <title>Graph API Emulation</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Graph API Emulation</title>
 </head>
 
 <style>
-   html,
-   body {
-      padding: 0;
-      margin: 0;
-      width: 100%;
-      height: 100%;
-   }
+  html,
+  body {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
 
-    ::-webkit-scrollbar {
-      display: none;
-   }
+   ::-webkit-scrollbar {
+    display: none;
+  }
+
+  .canvas-container {
+    position: relative;
+  }
+
+  #canvas {
+    position: absolute;
+    z-index: -1;
+  }
+
+  #canvasHover {
+    position: relative;
+  }
 </style>
 
 <body>
 
-   <canvas id="canvas"></canvas>
-   <script>
-      document.getElementById('canvas').setAttribute("width", window.innerWidth);
-      document.getElementById('canvas').setAttribute("height", window.innerHeight);
+  <div class="canvas-container">
+    <canvas id="canvas"></canvas>
+    <canvas id="canvasHover"></canvas>
+  </div>
 
-      window.onresize = function () {
-         document.getElementById('canvas').setAttribute("width", window.innerWidth);
-         document.getElementById('canvas').setAttribute("height", window.innerHeight);
-
-         endX = window.innerWidth - 100;
-         endY = window.innerHeight - 100;
-
-         appStart();
-      }
-   </script>
-
-   <script src="./myGraphTest/config.js"></script>
-   <script src="./myGraphTest/myApp.js"></script>
+  <script src="./myGraphTest/config.js"></script>
+  <script src="./myGraphTest/events.js"></script>
+  <script src="./myGraphTest/functions.js"></script>
+  <script src="./myGraphTest/graphMap.js"></script>
+  <script src="./myGraphTest/myApp.js"></script>
 
 </body>
 
