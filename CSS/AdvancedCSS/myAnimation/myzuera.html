@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+html, body {
+	height: 100%;
+}
+
+body {
+	display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.div11, 
+.div12 {
+    position: absolute;
+    border: 1px solid black;
+}
+
+.div11 {
+	
+}
+
+.div12 {
+	
+}
+
+.div2 {
+    padding: 50px;
+    position: fixed;
+    border: 1px solid black;
+    background-color: red;
+}
+
+#no {
+	animation: example1 1000ms ease-in-out infinite alternate;
+    transform-origin: right bottom;
+}
+
+#conn {
+	animation: example2 1000ms ease-in-out infinite alternate;
+    transform-origin: right bottom;
+}
+
+@keyframes example1 {
+
+	0% {
+    	transform: scale(1) translateX(0vw);
+        font-size: 500%;
+    }
+    
+    25% {
+    	transform: scale(1.8) translateX(-5vw);
+    }
+    
+    75% {
+    	transform: scale(1) translateX(0vw);
+    }
+    
+    100% {
+    	transform: scale(1.8) translateX(-5vw);
+    }
+
+}
+
+@keyframes example2 {
+
+	0% {
+    	transform: scale(1) translateX(-20vw);
+    }
+    
+    25% {
+    	transform: scale(1.8) translateX(10vw);
+        font-size: 500%;
+    }
+    
+    75% {
+    	transform: scale(1) translateX(-20vw);
+    }
+    
+    100% {
+    	transform: scale(1.8) translateX(10vw);
+    }
+
+}
+
+</style>
+</head>
+<body>
+
+<div class="div12">
+  <div id="no" class="div2">No</div>
+</div>
+
+<div class="div11">
+  <div id="conn" class="div2">Connection</div>
+</div>
+
+</body>
+</html>
