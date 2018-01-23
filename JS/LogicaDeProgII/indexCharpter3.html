@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Interacting with user</title>
+</head>
+
+<body>
+
+   <canvas width="600" height="400"></canvas>
+
+   <script>
+      let circle = {};
+      let colors = ['blue', 'red', 'green'];
+      let index = 0;
+      let circleSize = 10;
+      let INCREMENT = 5;
+      let mouseState = false;
+
+      circle.color = colors[index];
+
+      let canvas = document.querySelector('canvas');
+      let pencil = canvas.getContext('2d');
+
+      pencil.fillStyle = 'grey';
+      pencil.fillRect(0, 0, 600, 400);
+
+
+
+      function drawCircle(event) {
+         
+         if (mouseState && event.buttons == 1) {
+
+            let x = event.clientX - canvas.offsetLeft;
+            let y = event.clientY - canvas.offsetTop;
+
+            if (event.shiftKey) {
+               circleSize += (circleSize >= 40) ? 0 : INCREMENT
+            } else if (event.altKey) {
+               circleSize -= (circleSize <= 10) ? 0 : INCREMENT
+            }
+
+            pencil.fillStyle = circle.color;
+            pencil.beginPath();
+            pencil.arc(x, y, circleSize, 0, 2 * Math.PI);
+            pencil.fill();
+
+         }
+
+      }
+
+
+
+      function changeCircleColor() {
+
+         circle.color = colors[++index] || colors[index = 0];
+         return false; // to not showing contextmenu
+
+      }
+
+
+      function changeMouseState(event) {
+
+         if (event.type == 'mouseup') {
+            mouseState = false;
+         } else {
+            mouseState = true;
+         }
+
+      }
+
+
+
+      canvas.oncontextmenu = changeCircleColor;
+      canvas.onmouseup = changeMouseState;
+      canvas.onmousedown = changeMouseState;
+      canvas.onmousemove = drawCircle;
+   </script>
+
+</body>
+
+</html>
