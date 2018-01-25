@@ -29,6 +29,10 @@
          align-items: center;
       }
 
+      canvas {
+         border: 5px solid;
+      }
+
       .pallet-item {
          display: flex;
          padding: 2px 4px;
@@ -90,6 +94,17 @@
                <div id="minus">-</div>
             </div>
          </div>
+         <div>
+            <form>
+               <div>
+                  <input type="radio" id="draw" name="draw" value="draw">
+                  <label for="contactChoice2">Pintar</label>
+
+                  <input type="radio" id="erase" name="draw" value="erase">
+                  <label for="contactChoice3">Apagar</label>
+               </div>
+            </form>
+         </div>
       </div>
       <div>
          <canvas width="600" height="400"></canvas>
@@ -97,13 +112,9 @@
    </div>
 
    <script>
-      let INCREMENT = 5;
       let mouseState = false;
       let canvas = document.querySelector('canvas');
       let pencil = canvas.getContext('2d');
-
-      pencil.fillStyle = 'grey';
-      pencil.fillRect(0, 0, 600, 400);
 
 
       function drawCircle(event) {
@@ -115,8 +126,9 @@
 
             let circleSize = document.querySelector('#size').value;
             let circleColor = document.querySelector('#color').value;
+            let drawOption = document.querySelector('#draw');
 
-            pencil.fillStyle = circleColor;
+            pencil.fillStyle = (drawOption.checked) ? circleColor : '#FFF';
             pencil.beginPath();
             pencil.arc(x, y, circleSize, 0, 2 * Math.PI);
             pencil.fill();

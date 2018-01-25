@@ -13,26 +13,46 @@
    <canvas width="600" height="400"></canvas>
 
    <script>
-      var canvas = document.querySelector('canvas');
-      var pencil = canvas.getContext('2d');
+
+      let canvas = document.querySelector('canvas');
+      let pencil = canvas.getContext('2d');
+      let xPosition = 20;
+      let INCREMENTOR = 1;
+
+      const minX = 0,
+         maxX = 600;
+      const minY = 0,
+         maxY = 400;
+      let width = 20
 
       pencil.fillStyle = 'lightgray';
       pencil.fillRect(0, 0, 600, 400);
 
 
 
-      function drawCircle(x, y, radius) {
-
-         pencil.fillStyle = 'blue';
-         pencil.beginPath();
-         pencil.arc(x, y, radius, 0, 2 * Math.PI)
-         pencil.fill();
-
+      function clearWindow() {
+         pencil.clearRect(0, 0, 600, 400);
       }
 
 
 
-      drawCircle(20, 20, 10);
+      function drawCircle(radius) {
+
+         clearWindow();
+         pencil.fillStyle = 'blue';
+         pencil.beginPath();
+         pencil.arc(xPosition, 20, radius, 0, 2 * Math.PI)
+         pencil.fill();
+
+         if ((xPosition >= 580 && INCREMENTOR == 1) || (xPosition <= 20 && INCREMENTOR == -1)) {
+            INCREMENTOR *= -1;
+         }
+
+         xPosition += INCREMENTOR;
+
+      }
+
+      setInterval(drawCircle, 10, 10);
 
    </script>
 
