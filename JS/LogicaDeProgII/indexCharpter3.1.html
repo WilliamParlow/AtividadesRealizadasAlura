@@ -29,6 +29,11 @@
          align-items: center;
       }
 
+      .pallet {
+         border: 5px solid;
+         border-bottom: none;
+      }
+
       canvas {
          border: 5px solid;
       }
@@ -143,13 +148,14 @@
                <div id="minus">-</div>
             </div>
          </div>
-         <div>
-            <form>
-               <div class="size-change">
-                  <input type="radio" id="draw" name="draw" value="draw" checked>
-                  <input type="radio" id="erase" name="draw" value="erase">
-               </div>
-            </form>
+         <div class="pallet-item">
+            <div class="size-change">
+               <input type="radio" id="draw" name="draw" value="draw" checked>
+               <input type="radio" id="erase" name="draw" value="erase">
+            </div>
+         </div>
+         <div class="pallet-item">
+            <input id='bkcolor' type="color" value="#FFFFFF">
          </div>
       </div>
       <div>
@@ -161,7 +167,7 @@
       let mouseState = false;
       let canvas = document.querySelector('canvas');
       let pencil = canvas.getContext('2d');
-
+      let eraseColor = '#FFFFFF';
 
       function drawCircle(event) {
 
@@ -174,7 +180,7 @@
             let circleColor = document.querySelector('#color').value;
             let drawOption = document.querySelector('#draw');
 
-            pencil.fillStyle = (drawOption.checked) ? circleColor : '#FFF';
+            pencil.fillStyle = (drawOption.checked) ? circleColor : eraseColor;
             pencil.beginPath();
             pencil.arc(x, y, circleSize, 0, 2 * Math.PI);
             pencil.fill();
@@ -208,12 +214,23 @@
 
 
 
+      function changeBackground() {
+
+         eraseColor = this.value;
+         pencil.fillStyle = eraseColor;
+         pencil.fillRect(0, 0, 600, 400);
+
+      }
+
+
+
       canvas.onmouseup = changeMouseState;
       canvas.onmousedown = changeMouseState;
       canvas.onmousemove = drawCircle;
 
       document.querySelector('#plus').onclick = circleSizeOperator;
       document.querySelector('#minus').onclick = circleSizeOperator;
+      document.querySelector('#bkcolor').onchange = changeBackground;
    </script>
 
 </body>
