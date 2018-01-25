@@ -3,8 +3,6 @@ canvas.setAttribute("height", window.innerHeight);
 canvasHover.setAttribute("width", window.innerWidth);
 canvasHover.setAttribute("height", window.innerHeight);
 
-
-
 window.onresize = function() {
    canvas.setAttribute("width", window.innerWidth);
    canvas.setAttribute("height", window.innerHeight);
@@ -16,6 +14,8 @@ window.onresize = function() {
 
    appStart();
 }
+
+
 
 canvasHover.onmousemove = function(event) {
 
