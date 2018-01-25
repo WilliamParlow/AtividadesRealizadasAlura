@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>We drawed the circle, and now?</title>
+</head>
+
+<body>
+
+   <canvas width="600" height="400"></canvas>
+
+   <script>
+      let canvas = document.querySelector('canvas');
+      let pencil = canvas.getContext('2d');
+
+      let xPosition = 300;
+      let yPosition = 200;
+
+      let keyCodes = {
+         left: 37,
+         up: 38,
+         right: 39,
+         down: 40
+      }
+
+      let moveVal = 5;
+
+      const minX = 0,
+         maxX = 600;
+      const minY = 0,
+         maxY = 400;
+
+      let width = 20
+
+
+
+      pencil.fillStyle = 'white';
+      pencil.fillRect(0, 0, 600, 400);
+
+
+
+      function clearWindow() {
+         pencil.clearRect(0, 0, 600, 400);
+      }
+
+
+
+      function drawCircle(radius) {
+
+         clearWindow();
+         pencil.fillStyle = 'red';
+         pencil.beginPath();
+         pencil.arc(xPosition, yPosition, radius, 0, 2 * Math.PI)
+         pencil.fill();
+
+      }
+
+
+      function moveCircleWithArrowKeys(event) {
+         
+         if (event.keyCode == keyCodes.up && yPosition > 10) {
+            yPosition -= moveVal ;
+         } else if (event.keyCode == keyCodes.down && yPosition < 390) {
+            yPosition += moveVal ;
+         } else if (event.keyCode == keyCodes.left && xPosition > 10) {
+            xPosition -= moveVal ;
+         } else if (event.keyCode == keyCodes.right && xPosition < 590) {
+            xPosition += moveVal ;
+         }
+
+         drawCircle(10);
+
+      }
+
+
+
+      drawCircle(10);
+      document.onkeydown = moveCircleWithArrowKeys;
+
+   </script>
+
+</body>
+
+</html>
