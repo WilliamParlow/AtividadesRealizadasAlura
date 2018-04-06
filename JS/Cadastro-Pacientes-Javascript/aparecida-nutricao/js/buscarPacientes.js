@@ -18,7 +18,7 @@ botaoAdicionar.addEventListener("click", function() {
 
   // Abre uma conexão com o endereço que queremos trabalhar,
   // nesse caso, o http://api-pacientes.herokuapp.com/pacientes
-  xhr.open("GET", "https://raw.githubusercontent.com/WilliamParlow/AtividadesRealizadasAlura/master/JS/Cadastro-Pacientes-Javascript/aparecida-nutricao/json/pacientes");
+  xhr.open("GET", "https://api-pacientes.herokuapp.com/pacientes");
 
   // Adiciona um evento que executa ao receber todos os dados do endereço
   xhr.addEventListener("load", function() {
