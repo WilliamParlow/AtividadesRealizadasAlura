@@ -1,4 +1,4 @@
-# AtividadesRealizadasAlura
+# atividades-realizadas-alura
 Activities carried out during the course of the alura
 
 ### Links of each project
